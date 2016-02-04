@@ -46,3 +46,12 @@ function register_footer_menu() {
   register_nav_menu('slick-footer-menu',__( 'Slick Footer Menu' ));
 }
 add_action( 'init', 'register_footer_menu' );
+
+
+function custom_gravatar ($avatar_defaults) {
+    $myavatar = get_template_directory_uri() . '/img/gravatar.png';
+    $avatar_defaults[$myavatar] = __( 'Custom Gravatar', 'slick' );
+    return $avatar_defaults;
+}
+
+add_filter( 'avatar_defaults', 'custom_gravatar' );
