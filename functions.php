@@ -55,3 +55,10 @@ function custom_gravatar ($avatar_defaults) {
 }
 
 add_filter( 'avatar_defaults', 'custom_gravatar' );
+
+function custom_signature($content){
+  $signature='<p>Until next time,<br/> -James Knight</p>';
+  return $content.$signature;
+}
+
+add_filter( 'the_content', 'custom_signature');
