@@ -27,17 +27,22 @@ function slick_sidebar_init() {
 
 add_action( 'widgets_init', 'slick_sidebar_init' );
 function cd_posts_navigation() {
+  // Don't print empty markup if there's only one page.
+	if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
+		return;
+	}
 	?>
 	<nav class="navigation posts-navigation" role="navigation">
 		<h2 class="screen-reader-text"><?php _e( 'Posts navigation', 'codediva' ); ?></h2>
 		<div class="nav-links">
-
-
 			<div class="nav-previous"><?php next_posts_link(__( '&larr; Old posts', 'slick' ) ); ?></div>
-
-
 			<div class="nav-next"><?php previous_posts_link( __( 'New posts &rarr;', 'slick' )  ); ?></div>
 		</div><!-- .nav-links -->
 	</nav><!-- .navigation -->
 	<?php
 }
+
+function register_footer_menu() {
+  register_nav_menu('slick-footer-menu',__( 'Slick Footer Menu' ));
+}
+add_action( 'init', 'register_footer_menu' );
